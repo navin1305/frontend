@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+background-image:url('bg3.jpg');
+background-repeat: no-repeat;
+background-size:cover;
+}
+input[type=text], select {
+    width: 40%;
+    padding: 10px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+input[type=password], select {
+    width: 40%;
+    padding: 10px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type=submit] {
+    width: 20%;
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #2E8B57;
+}
+
+div.fixed {
+	position: fixed;
+	top: 200px;
+	left: 350px;
+	right:400px;
+	width: 100;
+    
+}
+</style>
+</head>
+<body>
+<div class="fixed"> 
+<h2 style="font-family:courier;"><center>WELCOME</center></h2>
+  <form name="loginform" action="main.html" onSubmit="return ValidateForm()">
+    <b><br><center><label for="fname" style="font-family:courier;">Username</label>
+    <input type="text" style="font-family:courier;" id="fname" name="EmailID" placeholder="Mail ID"></center><br>
+
+    <center><label for="lname" style="font-family:courier;">Password</label>
+    <input type="password" style="font-family:courier;" id="lname" name="Password" placeholder="Password"></center><br></b>
+
+    <center><input type="submit" style="font-family:courier;" value="LOGIN" ></center>
+  </form>
+</div>
+
+<script language="Javascript">
+function echeck(str) 
+{
+	var at="@"
+	var dot="."
+	var lat=str.indexOf(at)
+	var lstr=str.length
+	var ldot=str.indexOf(dot)
+	if (str.indexOf(at)==-1)
+	{
+		alert("Invalid E-mail ID")
+		return false
+	}
+	if (str.indexOf(at)==-1 || str.indexOf(at)==0 || str.indexOf(at)==lstr)
+	{
+		  alert("Invalid E-mail ID")
+		  return false
+	}
+	if (str.indexOf(dot)==-1 || str.indexOf(dot)==0 || str.indexOf(dot)==lstr)
+	{
+	    alert("Invalid E-mail ID")
+	    return false
+	}
+ 	if (str.indexOf(at,(lat+1))!=-1)
+	{
+	    alert("Invalid E-mail ID")
+	    return false
+	} 	if (str.substring(lat-1,lat)==dot || str.substring(lat+1,lat+2)==dot)
+	{
+	    alert("Invalid E-mail ID")
+	    return false
+	}
+
+
+	if (str.indexOf(dot,(lat+2))==-1)
+	{
+	    alert("Invalid E-mail ID")
+	    return false
+	}
+		
+	if (str.indexOf(" ")!=-1)
+	{
+	    alert("Invalid E-mail ID")
+	    return false
+	 }
+return true					
+}
+function ValidateForm()
+{
+	var emailID=document.loginform.EmailID
+	var password=document.loginform.Password.value
+	if ((emailID.value==null)||(emailID.value==""))
+	{
+		alert("Please Enter your Email ID")
+		emailID.focus()
+		return false
+	}
+	if (echeck(emailID.value)==false)
+	{
+		emailID.value=""
+		emailID.focus()
+		return false
+	}
+	
+	else if(password.length<8)
+	{
+		alert("password should contain atleast 8 characters")
+		emailID.focus()
+		return false
+	}
+	else
+	{
+		return true
+	}
+}
+</script>
+</body>
+</html>
